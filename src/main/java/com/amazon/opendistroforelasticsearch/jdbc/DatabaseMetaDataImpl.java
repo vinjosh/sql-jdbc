@@ -721,9 +721,9 @@ public class DatabaseMetaDataImpl implements DatabaseMetaData, JdbcWrapper, Logg
 
         List<List<Object>> dataRows = new ArrayList<>();
 
-        if (clusterCatalogMatches(catalog) && clusterSchemaMatches(schemaPattern)) {
-            dataRows.add(Arrays.asList("", getClusterCatalogName()));
-        }
+//        if (clusterCatalogMatches(catalog) && clusterSchemaMatches(schemaPattern)) {
+//            dataRows.add(Arrays.asList("", getClusterCatalogName()));
+//        }
         return new ResultSetImpl(null, columnDescriptors, dataRows, log);
     }
 
@@ -798,7 +798,14 @@ public class DatabaseMetaDataImpl implements DatabaseMetaData, JdbcWrapper, Logg
 
     @Override
     public ResultSet getPrimaryKeys(String catalog, String schema, String table) throws SQLException {
-        throw new SQLFeatureNotSupportedException("Primary keys are not supported");
+        return emptyResultSet(log,
+                rscd("TABLE_CATALOG"),
+                rscd("TABLE_SCHEM"),
+                rscd("TABLE_NAME"),
+                rscd("COLUMN_NAME"),
+                rscd("KEY_SEQ", ElasticsearchType.SHORT.getTypeName()),
+                rscd("PK_NAME")
+        );
     }
 
     @Override

@@ -391,13 +391,14 @@ public class DatabaseMetaDataTests {
 
 
     private MockResultSet getExpectedSchemaResultSet() {
-        MockResultSetRows mockResultSetRows = MockResultSetRows.builder()
-                .row()
-                .column("")
-                .column("mock-cluster")
-                .build();
-
-        return new MockResultSet(getMockSchemaResultSetMetaData(), mockResultSetRows);
+//        MockResultSetRows mockResultSetRows = MockResultSetRows.builder()
+//                .row()
+//                .column("")
+//                .column("mock-cluster")
+//                .build();
+//
+//        return new MockResultSet(getMockSchemaResultSetMetaData(), mockResultSetRows);
+        return getEmptySchemaResultSet();
     }
 
     private MockResultSet getEmptySchemaResultSet() {
